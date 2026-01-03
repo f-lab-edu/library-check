@@ -4,7 +4,7 @@ import * as bcrypt from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 import { LoginDto } from './dto/auth.dto';
 import { LoginResponse } from './types/login-response.type';
-
+import { MIN_PASSWORD_LENGTH } from 'src/config/app.config';
 @Injectable()
 export class AuthService {
   constructor(
@@ -24,9 +24,9 @@ export class AuthService {
     if (!isPasswordValid) {
       throw new UnauthorizedException('이메일 또는 비밀번호가 잘못되었습니다.');
     }
-    if (password.length < 8) {
-      throw new UnauthorizedException('비밀번호가 너무 짧습니다.');
-    }
+    // if (password.length < MIN_PASSWORD_LENGTH) {
+    //   throw new UnauthorizedException('비밀번호가 너무 짧습니다.');
+    // }
 
     const payload = { sub: user.id, email: user.email };
 
