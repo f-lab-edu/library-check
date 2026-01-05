@@ -5,6 +5,7 @@ import { HealthController } from './health/health.controller';
 import { TerminusModule } from '@nestjs/terminus';
 import { HttpModule } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';
+import { FileUploadModule } from './file-upload/file-upload.module';
 
 const ENV = process.env.NODE_ENV || 'development';
 
@@ -16,6 +17,7 @@ const ENV = process.env.NODE_ENV || 'development';
       isGlobal: true,
       envFilePath: `.env.${ENV}`,
     }),
+    FileUploadModule,
   ],
   controllers: [AppController, HealthController],
   providers: [AppService],
