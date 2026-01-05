@@ -37,7 +37,7 @@ describe('UsersService', () => {
   });
 
   describe('create', () => {
-    it('회원가입 시 새로운 사용자 생성', async () => {
+    it('should create a new user', async () => {
       const createUserDto: CreateUserDto = {
         email: 'test@example.com',
         password: 'pass1234',
@@ -77,7 +77,7 @@ describe('UsersService', () => {
       expect(result.password).toBe(hashedPassword);
     });
 
-    it('email 중복 체크', async () => {
+    it('should throw Exception when email is not unique', async () => {
       const createUserDto: CreateUserDto = {
         email: 'test12@example.com',
         password: 'pass1234',
@@ -95,11 +95,7 @@ describe('UsersService', () => {
       mockRepository.findOne.mockResolvedValue(existingUser);
 
       await expect(service.create(createUserDto)).rejects.toThrow(
-        ConflictException,
-      );
-
-      await expect(service.create(createUserDto)).rejects.toThrow(
-        '이미 존재하는 이메일입니다.',
+        new ConflictException('이미 존재하는 이메일입니다.'),
       );
 
       expect(mockRepository.save).not.toHaveBeenCalled();
