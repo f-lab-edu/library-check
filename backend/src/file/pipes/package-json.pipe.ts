@@ -9,7 +9,7 @@ export class PackageJsonPipe implements PipeTransform<Express.Multer.File> {
     p0: any,
   ): Promise<Express.Multer.File> {
     if (!file) {
-      throw new BadRequestException('No file uploaded');
+      throw new BadRequestException('No file uploaded ');
     }
 
     if (file.size > this.MAX_FILE_SIZE) {
