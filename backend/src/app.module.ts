@@ -8,7 +8,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
-import { FileUploadModule } from './file-upload/file-upload.module';
+import { OsvBatchModule } from './osv-api/osv-batch.module';
 
 const ENV = process.env.NODE_ENV || 'development';
 
@@ -37,7 +37,7 @@ const ENV = process.env.NODE_ENV || 'development';
     }),
     UsersModule,
     AuthModule,
-    FileUploadModule,
+    OsvBatchModule,
   ],
   controllers: [AppController, HealthController],
   providers: [AppService],
