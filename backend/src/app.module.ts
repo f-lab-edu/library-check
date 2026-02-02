@@ -9,6 +9,7 @@ import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { OsvBatchModule } from './osv-api/osv-batch.module';
+import { ProjectModule } from './project/project.module';
 
 const ENV = process.env.NODE_ENV || 'development';
 
@@ -38,6 +39,7 @@ const ENV = process.env.NODE_ENV || 'development';
     UsersModule,
     AuthModule,
     OsvBatchModule,
+    ProjectModule,
   ],
   controllers: [AppController, HealthController],
   providers: [AppService],
