@@ -10,6 +10,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import { OsvBatchModule } from './osv-api/osv-batch.module';
 import { ProjectModule } from './project/project.module';
+import { BoardModule } from './board/board.module';
 
 const ENV = process.env.NODE_ENV || 'development';
 
@@ -33,13 +34,15 @@ const ENV = process.env.NODE_ENV || 'development';
         database: configService.get<string>('DB_DATABASE'),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
         synchronize: configService.get<string>('NODE_ENV') === 'development',
-        logging: configService.get<string>('NODE_ENV') === 'development',
+        // logging: configService.get<string>('NODE_ENV') === 'development',
+        logging: true,
       }),
     }),
     UsersModule,
     AuthModule,
     OsvBatchModule,
     ProjectModule,
+    BoardModule,
   ],
   controllers: [AppController, HealthController],
   providers: [AppService],

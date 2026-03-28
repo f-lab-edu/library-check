@@ -4,7 +4,10 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
+import { BoardComment } from 'src/board/entities/board-comment.entity';
+import { BoardPost } from 'src/board/entities/board-post.entity';
 
 @Entity('users')
 export class User {
@@ -25,4 +28,10 @@ export class User {
 
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
+
+  @OneToMany(() => BoardPost, (post) => post.user)
+  posts: BoardPost[];
+
+  @OneToMany(() => BoardComment, (comment) => comment.user)
+  comments: BoardComment[];
 }
